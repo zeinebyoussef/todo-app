@@ -1,0 +1,16 @@
+<div class="card">
+  <div class="card-body" style="min-height: 50vh">
+    <div *ngIf="tasks$ | async as tasks">
+      <div *ngFor="let task of tasks; trackByUuid" class="d-flex flex-column">
+        <app-task-item
+          [task]="task"
+          [loadings]="loadings$ | async"
+          [errors]="errors$ | async"
+          (editedTask)="updateTask($event)"
+          (taskUuid)="removeTask($event)"
+        >
+        </app-task-item>
+      </div>
+    </div>
+  </div>
+</div>

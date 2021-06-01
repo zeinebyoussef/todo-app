@@ -1,0 +1,54 @@
+<div class="border-bottom p-3 row item" *ngIf="!editing; else update">
+  <div class="col d-flex flex-column justify-content-center">
+    <li (dblclick)="editing = true">{{ task?.name }}</li>
+  </div>
+  <span class="col-1">
+    <button class="btn btn-dark" (click)="editing = true">
+      <span class="iconify" data-icon="fe-edit" data-inline="false"></span>
+    </button> </span
+  ><span class="col-1">
+    <button class="btn btn-light" (click)="deleteTask()">
+      <span class="iconify" data-icon="fe-trash" data-inline="false"></span>
+    </button>
+  </span>
+</div>
+
+<ng-template #update>
+  <div class="border-bottom p-lg-3 p-0 d-flex justify-content-between item row">
+    <div class="col">
+      <form [formGroup]="updateForm">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="{{ task?.name }}"
+          formControlName="name"
+          [ngClass]="{ 'is-invalid': errors && errors[task.uuid]?.status }"
+        />
+        <div
+          class="invalid-feedback"
+          *ngIf="errors && errors[task.uuid]?.status"
+        >
+          {{ errors[task.uuid]?.message }}
+        </div>
+      </form>
+    </div>
+    <div class="col-1">
+      <button class="btn btn-dark" (click)="editTask()">
+        <span class="iconify" data-icon="fe-check" data-inline="false"></span>
+      </button>
+    </div>
+    <div class="col-1">
+      <button class="btn btn-light" (click)="editing = false">
+        <span class="iconify" data-icon="fe-close" data-inline="false"></span>
+      </button>
+    </div>
+  </div>
+</ng-template>
+
+<div class="loading" *ngIf="loadings && loadings[task.uuid]">
+  <span
+    class="spinner-grow spinner-grow-sm"
+    role="status"
+    aria-hidden="true"
+  ></span>
+</div>

@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="row">
+    <div class="offset-2 col-8 mt-3">
+      <h1>Todo list</h1>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="offset-lg-2 col-lg-8 offset-0 col">
+      <div class="card">
+        <div class="card-body">
+          <div class="row p-3 add">
+            <div class="col">
+              <form [formGroup]="addForm">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="+TODO"
+                  formControlName="name"
+                  [ngClass]="{ 'is-invalid': (error$ | async)?.status }"
+                />
+                <div class="invalid-feedback" *ngIf="(error$ | async)?.status">
+                  {{ (error$ | async)?.message }}
+                </div>
+              </form>
+            </div>
+            <div class="col-1">
+              <button class="btn btn-dark" (click)="addTask()">
+                <span
+                  class="iconify"
+                  data-icon="fe-plus"
+                  data-inline="false"
+                ></span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="offset-lg-2 col-lg-8 offset-0 col">
+      <app-task-list></app-task-list>
+    </div>
+  </div>
+</div>
+
+<div class="loading" *ngIf="loading$ | async">
+  <span
+    class="spinner-grow spinner-grow-sm"
+    role="status"
+    aria-hidden="true"
+  ></span>
+</div>

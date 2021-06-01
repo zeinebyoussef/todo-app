@@ -1,1 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
+
+body {
+  background-image: linear-gradient(
+    to right,
+    rgb(184, 184, 231),
+    rgb(136, 187, 231)
+  );
+  background-attachment: fixed;
+
+  background-color: #bed2f5;
+}
+h1 {
+  color: #111;
+  font-family: "Open Sans Condensed", sans-serif;
+  font-size: 64px;
+  font-weight: 700;
+  line-height: 64px;
+  margin: 0 0 0;
+  padding: 20px 30px;
+  text-align: center;
+  text-transform: uppercase;
+}
